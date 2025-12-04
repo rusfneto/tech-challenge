@@ -1,0 +1,18 @@
+version: '3.9'
+
+volumes:
+  mysql_data: {}
+
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306" 
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: techchallenge
+      MYSQL_USER: rm370154
+      MYSQL_PASSWORD: fiap
