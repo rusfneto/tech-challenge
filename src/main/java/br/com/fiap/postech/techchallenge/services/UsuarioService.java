@@ -21,18 +21,16 @@ public class UsuarioService {
     @Autowired
     private TipoUsuarioRepository tipoUsuarioRepository;
 
-    public List<Usuario> listarUsuarios(int pagina, int tamanho, int tipo) {
+    public List<Usuario> listarUsuarios(int pagina, int tamanho, Long tipo) {
         int offset = (pagina - 1) * tamanho;
-        List<Usuario> usuarios = new ArrayList<>();
 
-        if(ObjectUtils.isEmpty(tipo)){
-            usuarios = usuarioRepository.listarUsuarios(tamanho, offset);
+        if (tipo == null) {
+            return usuarioRepository.listarUsuarios(tamanho, offset);
         } else {
-            usuarios = usuarioRepository.listarUsuariosPorTipo(tamanho, offset, tipo);
+            return usuarioRepository.listarUsuariosPorTipo(tamanho, offset, tipo);
         }
-
-        return usuarios;
     }
+
 
     public void salvarUsuario(UsuarioRequestDTO usuario) {
         var usuarioEntity = converteDTO(usuario);

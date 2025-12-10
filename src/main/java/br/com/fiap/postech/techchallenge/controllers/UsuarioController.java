@@ -17,7 +17,10 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listarUsuarios(@RequestParam("pagina") int pagina, @RequestParam("tamanho") int tamanho, @RequestParam("tipo") int tipo) {
+    public ResponseEntity<List<Usuario>> listarUsuarios(
+            @RequestParam("pagina") int pagina,
+            @RequestParam("tamanho") int tamanho,
+            @RequestParam(name = "tipo", required = false) Long tipo) {
         var usuarios = usuarioService.listarUsuarios(pagina, tamanho, tipo);
 
         return ResponseEntity.ok(usuarios);

@@ -3,25 +3,15 @@ package br.com.fiap.postech.techchallenge.repositories;
 import br.com.fiap.postech.techchallenge.entities.Usuario;
 
 import java.util.List;
-import java.util.Optional;
-
 
 public interface UsuarioRepository {
 
-    Integer save(Usuario usuario);
-
-    Integer update(Usuario usuario, Long id);
-
-    Integer delete(Long id);
-
-    boolean validarEmail(String email);
-
-    Integer atualizarDadosUsuario(Usuario usuario, Long id);
-
+    // lista paginada, sem filtro de tipo
     List<Usuario> listarUsuarios(int tamanho, int offset);
 
-    List<Usuario> listarUsuariosPorTipo(int tamanho, int offset, int tipo);
+    // lista paginada filtrando pelo id do tipo de usuário
+    List<Usuario> listarUsuariosPorTipo(int tamanho, int offset, Long tipoUsuarioId);
 
-    Optional<Usuario> findByNome(String nome);
-
+    // salva um usuário
+    int save(Usuario usuario);
 }
