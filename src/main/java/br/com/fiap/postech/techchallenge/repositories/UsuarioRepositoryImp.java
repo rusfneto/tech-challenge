@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 @Repository
 public class UsuarioRepositoryImp implements UsuarioRepository {
 
@@ -123,5 +124,77 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                 .param("tipoUsuarioId",
                         usuario.getTipoUsuario() != null ? usuario.getTipoUsuario().getId() : null)
                 .update();
+    }
+
+    @Override
+    public Optional<Usuario> atualizarUsuario(Long id, Usuario usuario) {
+        
+        String sql = """
+                UPDATE usuarios
+                SET nome = :nome,
+                    email = :email,
+                    login = :login,
+                    senha = :senha,
+                    data_ultima_alteracao = :dataUltimaAlteracao,
+                    endereco = :endereco,
+                    tipo_usuario_id= :tipoUsuarioId
+                WHERE id = :id
+                """;
+        
+        jdbcClient.sql(sql)
+            .param("id", id)
+            .param("nome", usuario.getNome())
+            .param("email", usuario.getEmail())
+            .param("login", usuario.getLogin())
+            .param("senha", usuario.getSenha())
+            .param("dataUltimaAlteracao", usuario.getDataUltimaAlteracao())
+            .param("endereco", usuario.getEndereco())
+            .param("tipoUsuarioId", usuario.getTipoUsuario().getId())
+            .update();
+
+        Optional<Usuario> usuarioAtualizado = findById(id);
+
+        return usuarioAtualizado;
+    }
+
+    @Override
+    public Optional<Usuario> findById(Long id) {
+        String sql = """                
+                SELECT u.id,
+                   u.nome,
+                   u.email,
+                   u.login,
+                   u.senha,
+                   u.data_ultima_alteracao,
+                   u.endereco,
+                   tu.id AS tipo_id,
+                   tu.tipo_usuario AS tipo_descricao
+                FROM usuarios u
+                INNER JOIN tipo_usuario tu 
+                    ON u.tipo_usuario_id = tu.id
+                WHERE u.id = :id;
+                """;
+        
+        Optional<Usuario> usuarioOptional = jdbcClient.sql(sql)
+        .param("id", id)
+        .query((rs, rowNum) -> {
+            Usuario u = new Usuario();
+            u.setId(rs.getLong("id"));
+            u.setNome(rs.getString("nome"));
+            u.setEmail(rs.getString("email"));
+            u.setLogin(rs.getString("login"));
+            u.setSenha(rs.getString("senha"));
+            u.setDataUltimaAlteracao(rs.getObject("data_ultima_alteracao", java.time.LocalDate.class));
+            u.setEndereco(rs.getString("endereco"));
+
+            TipoUsuario tipo = new TipoUsuario();
+            tipo.setId(rs.getLong("tipo_id"));
+            tipo.setTipoUsuario(rs.getString("tipo_descricao"));
+            u.setTipoUsuario(tipo);
+
+            return u;
+        }).optional();    
+        
+        return usuarioOptional;
     }
 }

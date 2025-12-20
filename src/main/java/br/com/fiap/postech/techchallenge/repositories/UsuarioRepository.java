@@ -3,6 +3,7 @@ package br.com.fiap.postech.techchallenge.repositories;
 import br.com.fiap.postech.techchallenge.entities.Usuario;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UsuarioRepository {
 
@@ -14,4 +15,8 @@ public interface UsuarioRepository {
 
     // salva um usuário
     int save(Usuario usuario);
+
+    Optional<Usuario> atualizarUsuario(Long id, Usuario usuario);
+
+    Optional<Usuario> findById(Long id);
 }

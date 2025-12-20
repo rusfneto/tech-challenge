@@ -1,5 +1,6 @@
 package br.com.fiap.postech.techchallenge.controllers;
 
+import br.com.fiap.postech.techchallenge.dtos.UsuarioPatchDTO;
 import br.com.fiap.postech.techchallenge.dtos.UsuarioRequestDTO;
 import br.com.fiap.postech.techchallenge.entities.Usuario;
 import br.com.fiap.postech.techchallenge.services.UsuarioService;
@@ -30,6 +31,14 @@ public class UsuarioController {
     public ResponseEntity<Void> salvarUsuario(@RequestBody UsuarioRequestDTO usuario) {
         usuarioService.salvarUsuario(usuario);
         return ResponseEntity.status(201).build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioPatchDTO usuario){
+        
+        Usuario usuarioAtualizado = usuarioService.atualizarUsuario(id, usuario);
+        
+        return ResponseEntity.status(200).body(usuarioAtualizado);
     }
 
 }
