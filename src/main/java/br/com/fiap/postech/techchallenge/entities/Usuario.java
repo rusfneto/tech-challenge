@@ -13,19 +13,12 @@ import java.time.LocalDate;
 public class Usuario {
 
     private Long id;
-
     private String nome;
-
     private String email;
-
     private String login;
-
     private String senha;
-
     private LocalDate dataUltimaAlteracao;
-
     private String endereco;
-
     private TipoUsuario tipoUsuario;
 
     public Usuario(UsuarioRequestDTO usuarioDTO, TipoUsuario tipoUsuario) {
