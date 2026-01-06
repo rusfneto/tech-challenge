@@ -10,6 +10,9 @@ public interface UsuarioRepository {
     // lista paginada, sem filtro de tipo
     List<Usuario> listarUsuarios(int tamanho, int offset);
 
+    // lista por nome (like)
+    List<Usuario> buscaUsuario(String nome);
+
     // lista paginada filtrando pelo id do tipo de usuário
     List<Usuario> listarUsuariosPorTipo(int tamanho, int offset, Long tipoUsuarioId);
 

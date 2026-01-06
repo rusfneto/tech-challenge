@@ -33,6 +33,10 @@ public class UsuarioService {
         }
     }
 
+    public List<Usuario> buscaUsuario(String nome){
+        return usuarioRepository.buscaUsuario(nome);
+    }
+
 
     public void salvarUsuario(UsuarioRequestDTO usuario) {
         var usuarioEntity = converteDTO(usuario);
