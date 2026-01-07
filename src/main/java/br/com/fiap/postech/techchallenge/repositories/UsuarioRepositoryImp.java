@@ -44,7 +44,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                     u.setLogin(rs.getString("login"));
                     u.setSenha(rs.getString("senha"));
                     u.setDataUltimaAlteracao(
-                            rs.getObject("data_ultima_alteracao", java.time.LocalDate.class)
+                            rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class)
                     );
                     u.setEndereco(rs.getString("endereco"));
 
@@ -91,7 +91,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                     u.setLogin(rs.getString("login"));
                     u.setSenha(rs.getString("senha"));
                     u.setDataUltimaAlteracao(
-                            rs.getObject("data_ultima_alteracao", java.time.LocalDate.class)
+                            rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class)
                     );
                     u.setEndereco(rs.getString("endereco"));
 
@@ -184,7 +184,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
             u.setEmail(rs.getString("email"));
             u.setLogin(rs.getString("login"));
             u.setSenha(rs.getString("senha"));
-            u.setDataUltimaAlteracao(rs.getObject("data_ultima_alteracao", java.time.LocalDate.class));
+            u.setDataUltimaAlteracao(rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class));
             u.setEndereco(rs.getString("endereco"));
 
             TipoUsuario tipo = new TipoUsuario();

@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,7 +68,7 @@ public class UsuarioService {
         
         if(tipoUsuarioPatch != null) usuario.setTipoUsuario(tipoUsuarioPatch);
 
-        usuario.setDataUltimaAlteracao(LocalDate.now());
+        usuario.setDataUltimaAlteracao(LocalDateTime.now());
 
         Optional<Usuario> usuarioAtualizadoOptional = usuarioRepository.atualizarUsuario(id, usuario);
 
