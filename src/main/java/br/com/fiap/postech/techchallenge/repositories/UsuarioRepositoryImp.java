@@ -197,4 +197,13 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
         
         return usuarioOptional;
     }
+
+    @Override
+    public int remove(Long id){
+        String sql = "DELETE FROM usuarios u WHERE u.id = :id";
+        
+        return jdbcClient.sql(sql)
+        .param("id", id)
+        .update();
+    }
 }

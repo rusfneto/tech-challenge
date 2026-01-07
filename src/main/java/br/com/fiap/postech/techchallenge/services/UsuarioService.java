@@ -75,7 +75,14 @@ public class UsuarioService {
 
         //alterar
         return usuarioAtualizado;
-
         
+    }
+
+
+    public boolean excluirUsuario(Long id) {
+        
+        int qtdRegistrosExcluidos = usuarioRepository.remove(id);
+
+        return qtdRegistrosExcluidos > 0;
     }
 }
