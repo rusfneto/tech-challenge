@@ -24,4 +24,7 @@ public interface UsuarioRepository {
 
     Optional<Usuario> findByNome(String nome);
 
+    boolean existeLoginESenha(String login, String senha);
+
+
 }

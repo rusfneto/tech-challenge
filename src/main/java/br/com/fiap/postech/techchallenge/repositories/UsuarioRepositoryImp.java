@@ -15,17 +15,17 @@ public class UsuarioRepositoryImp implements UsuarioRepository{
     private JdbcClient jdbcClient;
 
     @Override
-    public Integer save(Usuario usuario) {
+    public Integer save(Usuario usuarios) {
         return jdbcClient
-                .sql("INSERT INTO usuario (nome, email, login, senha, dataUltimaAlteracao, endereco, tipoUsuario) " +
+                .sql("INSERT INTO usuarios (nome, email, login, senha, dataUltimaAlteracao, endereco, tipoUsuario) " +
                         "VALUES (:nome, :email, :login, :senha, :dataUltimaAlteracao, :endereco, :tipoUsuario)")
-                .param("nome", usuario.getNome())
-                .param("email", usuario.getEmail())
-                .param("login", usuario.getLogin())
-                .param("senha", usuario.getSenha())
-                .param("dataUltimaAlteracao", usuario.getDataUltimaAlteracao())
-                .param("endereco", usuario.getEndereco())
-                .param("tipoUsuario", usuario.getTipoUsuario().getId())
+                .param("nome", usuarios.getNome())
+                .param("email", usuarios.getEmail())
+                .param("login", usuarios.getLogin())
+                .param("senha", usuarios.getSenha())
+                .param("dataUltimaAlteracao", usuarios.getDataUltimaAlteracao())
+                .param("endereco", usuarios.getEndereco())
+                .param("tipoUsuario", usuarios.getTipoUsuario().getId())
                 .update();
     }
 
@@ -63,4 +63,17 @@ public class UsuarioRepositoryImp implements UsuarioRepository{
     public Optional<Usuario> findByNome(String nome) {
         return Optional.empty();
     }
+
+    @Override
+    public boolean existeLoginESenha(String login, String senha) {
+        Integer count = jdbcClient
+                .sql("SELECT COUNT(1) FROM usuarios WHERE login = :login AND senha = :senha")
+                .param("login", login)
+                .param("senha", senha)
+                .query(Integer.class)
+                .single();
+
+        return count != null && count > 0;
+    }
+
 }
