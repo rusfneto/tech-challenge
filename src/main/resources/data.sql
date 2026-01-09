@@ -23,8 +23,8 @@ USE `techchallenge`;
 
 DROP TABLE IF EXISTS `tipo_usuario`;
 CREATE TABLE `tipo_usuario` (
-                                `id` bigint(20) NOT NULL,
-                                `tipo_usuario` varchar(50) NOT NULL
+  `id` bigint(20) NOT NULL,
+  `tipo_usuario` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -43,15 +43,15 @@ INSERT INTO `tipo_usuario` (`id`, `tipo_usuario`) VALUES(3, 'DONO');
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
-                            `id` bigint(20) NOT NULL,
-                            `nome` varchar(150) NOT NULL,
-                            `email` varchar(150) NOT NULL,
-                            `login` varchar(100) NOT NULL,
-                            `senha` varchar(255) NOT NULL,
-                            `data_ultima_alteracao` date NOT NULL,
-                            `endereco` varchar(255) DEFAULT NULL,
-                            `tipo_usuario` varchar(50) NOT NULL,
-                            `tipo_usuario_id` bigint(20) DEFAULT NULL
+  `id` bigint(20) NOT NULL,
+  `nome` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `data_ultima_alteracao` date NOT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `tipo_usuario` varchar(50) NOT NULL,
+  `tipo_usuario_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -72,14 +72,14 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `login`, `senha`, `data_ultima_al
 -- Índices de tabela `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-    ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `tipo_usuario` (`tipo_usuario`);
 
 --
 -- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-    ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `uk_usuarios_email` (`email`),
   ADD UNIQUE KEY `uk_usuarios_login` (`login`),
   ADD KEY `fk_usuarios_tipo_usuario` (`tipo_usuario_id`);
@@ -92,13 +92,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-    MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-    MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para tabelas despejadas
@@ -108,7 +108,7 @@ ALTER TABLE `usuarios`
 -- Restrições para tabelas `usuarios`
 --
 ALTER TABLE `usuarios`
-    ADD CONSTRAINT `fk_usuarios_tipo_usuario` FOREIGN KEY (`tipo_usuario_id`) REFERENCES `tipo_usuario` (`id`);
+  ADD CONSTRAINT `fk_usuarios_tipo_usuario` FOREIGN KEY (`tipo_usuario_id`) REFERENCES `tipo_usuario` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

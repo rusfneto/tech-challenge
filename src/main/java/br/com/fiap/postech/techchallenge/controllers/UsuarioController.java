@@ -1,5 +1,6 @@
 package br.com.fiap.postech.techchallenge.controllers;
 
+import br.com.fiap.postech.techchallenge.dtos.UsuarioPatchDTO;
 import br.com.fiap.postech.techchallenge.dtos.UsuarioRequestDTO;
 import br.com.fiap.postech.techchallenge.entities.Usuario;
 import br.com.fiap.postech.techchallenge.services.UsuarioService;
@@ -17,9 +18,18 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listarUsuarios(@RequestParam("pagina") int pagina, @RequestParam("tamanho") int tamanho, @RequestParam("tipo") int tipo) {
+    public ResponseEntity<List<Usuario>> listarUsuarios(
+            @RequestParam("pagina") int pagina,
+            @RequestParam("tamanho") int tamanho,
+            @RequestParam(name = "tipo", required = false) Long tipo) {
         var usuarios = usuarioService.listarUsuarios(pagina, tamanho, tipo);
 
+        return ResponseEntity.ok(usuarios);
+    }
+
+    @GetMapping("/busca")
+    public ResponseEntity<List<Usuario>> buscar(@RequestParam("nome") String nome) {
+        var usuarios = usuarioService.buscaUsuario(nome);
         return ResponseEntity.ok(usuarios);
     }
 
@@ -27,6 +37,14 @@ public class UsuarioController {
     public ResponseEntity<Void> salvarUsuario(@RequestBody UsuarioRequestDTO usuario) {
         usuarioService.salvarUsuario(usuario);
         return ResponseEntity.status(201).build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioPatchDTO usuario){
+        
+        Usuario usuarioAtualizado = usuarioService.atualizarUsuario(id, usuario);
+        
+        return ResponseEntity.status(200).body(usuarioAtualizado);
     }
 
 }
