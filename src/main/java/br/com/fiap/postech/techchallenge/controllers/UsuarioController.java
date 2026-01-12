@@ -2,6 +2,7 @@ package br.com.fiap.postech.techchallenge.controllers;
 
 import br.com.fiap.postech.techchallenge.dtos.UsuarioPatchDTO;
 import br.com.fiap.postech.techchallenge.dtos.UsuarioRequestDTO;
+import br.com.fiap.postech.techchallenge.dtos.UsuarioAtualizarSenhaRequestDTO;
 import br.com.fiap.postech.techchallenge.entities.Usuario;
 import br.com.fiap.postech.techchallenge.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,14 @@ public class UsuarioController {
         return usuarioService.excluirUsuario(id)
                 ? ResponseEntity.status(204).build()
                 : ResponseEntity.status(404).build();        
+    }
+
+    @PutMapping("/{id}/trocar-senha")
+    public ResponseEntity<Void> atualizarSenha(@PathVariable Long id, @RequestBody UsuarioAtualizarSenhaRequestDTO reqBody){
+
+        usuarioService.atualizarSenha(id, reqBody);
+        return ResponseEntity.status(200).build();
+                
     }
 
 }

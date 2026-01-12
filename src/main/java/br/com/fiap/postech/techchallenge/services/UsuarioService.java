@@ -1,5 +1,6 @@
 package br.com.fiap.postech.techchallenge.services;
 
+import br.com.fiap.postech.techchallenge.dtos.UsuarioAtualizarSenhaRequestDTO;
 import br.com.fiap.postech.techchallenge.dtos.UsuarioPatchDTO;
 import br.com.fiap.postech.techchallenge.dtos.UsuarioRequestDTO;
 import br.com.fiap.postech.techchallenge.entities.TipoUsuario;
@@ -63,7 +64,7 @@ public class UsuarioService {
         if(usuarioPatchDto.getEmail() != null) usuario.setEmail(usuarioPatchDto.getEmail());
 
         if(usuarioPatchDto.getLogin() != null) usuario.setLogin(usuarioPatchDto.getLogin());
-        if(usuarioPatchDto.getSenha() != null) usuario.setSenha(usuarioPatchDto.getSenha());
+        // if(usuarioPatchDto.getSenha() != null) usuario.setSenha(usuarioPatchDto.getSenha());
         if(usuarioPatchDto.getEndereco() != null) usuario.setEndereco(usuarioPatchDto.getEndereco());
         
         if(tipoUsuarioPatch != null) usuario.setTipoUsuario(tipoUsuarioPatch);
@@ -85,5 +86,17 @@ public class UsuarioService {
         int qtdRegistrosExcluidos = usuarioRepository.remove(id);
 
         return qtdRegistrosExcluidos > 0;
+    }
+
+
+    public void atualizarSenha(Long id, UsuarioAtualizarSenhaRequestDTO reqBody) {
+        
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        usuario.setSenha(reqBody.getSenha());
+
+        usuarioRepository.atualizarUsuario(id, usuario);
+
+        return;        
     }
 }
