@@ -21,4 +21,8 @@ public interface UsuarioRepository {
     Optional<Usuario> findById(Long id);
 
     int remove(Long id);
+    
+    boolean existeLoginESenha(String login, String senha);
+
+
 }

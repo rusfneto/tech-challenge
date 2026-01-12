@@ -206,4 +206,17 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
         .param("id", id)
         .update();
     }
+
+    @Override
+    public boolean existeLoginESenha(String login, String senha) {
+        Integer count = jdbcClient
+                .sql("SELECT COUNT(1) FROM usuarios WHERE login = :login AND senha = :senha")
+                .param("login", login)
+                .param("senha", senha)
+                .query(Integer.class)
+                .single();
+
+        return count != null && count > 0;
+    }
+
 }
