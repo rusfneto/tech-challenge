@@ -28,6 +28,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarios);
     }
 
+    @GetMapping("/busca")
+    public ResponseEntity<List<Usuario>> buscar(@RequestParam("nome") String nome) {
+        var usuarios = usuarioService.buscaUsuario(nome);
+        return ResponseEntity.ok(usuarios);
+    }
+
     @PostMapping
     public ResponseEntity<Void> salvarUsuario(@RequestBody UsuarioRequestDTO usuario) {
         usuarioService.salvarUsuario(usuario);

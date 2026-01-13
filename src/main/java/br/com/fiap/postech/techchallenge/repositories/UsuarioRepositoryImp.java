@@ -105,6 +105,54 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                 .list();
     }
 
+
+    @Override
+    public List<Usuario> buscaUsuario(String texto) {
+
+        String sql = """
+        SELECT u.id,
+               u.nome,
+               u.email,
+               u.login,
+               u.senha,
+               u.data_ultima_alteracao,
+               u.endereco,
+               tu.id AS tipo_id,
+               tu.tipo_usuario AS tipo_descricao
+        FROM usuarios u
+        LEFT JOIN tipo_usuario tu ON u.tipo_usuario_id = tu.id
+        WHERE u.nome LIKE CONCAT('%', :texto, '%')
+        ORDER BY u.nome
+        """;
+
+        return jdbcClient.sql(sql)
+                .param("texto", texto)
+                .query((rs, rowNum) -> {
+                    Usuario u = new Usuario();
+                    u.setId(rs.getLong("id"));
+                    u.setNome(rs.getString("nome"));
+                    u.setEmail(rs.getString("email"));
+                    u.setLogin(rs.getString("login"));
+                    u.setSenha(rs.getString("senha"));
+                    u.setDataUltimaAlteracao(
+                            rs.getObject("data_ultima_alteracao", java.time.LocalDate.class)
+                    );
+                    u.setEndereco(rs.getString("endereco"));
+
+                    Long tipoId = rs.getLong("tipo_id");
+                    if (!rs.wasNull()) {
+                        TipoUsuario tipo = new TipoUsuario();
+                        tipo.setId(tipoId);
+                        tipo.setTipoUsuario(rs.getString("tipo_descricao"));
+                        u.setTipoUsuario(tipo);
+                    }
+
+                    return u;
+                })
+                .list();
+    }
+
+
     @Override
     public int save(Usuario usuario) {
         String sql = """
