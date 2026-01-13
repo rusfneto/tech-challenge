@@ -16,3 +16,18 @@ services:
       MYSQL_DATABASE: techchallenge
       MYSQL_USER: rm370154
       MYSQL_PASSWORD: fiap
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: techchallenge:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/techchallenge"
+      SPRING_DATASOURCE_USERNAME: rm370154
+      SPRING_DATASOURCE_PASSWORD: fiap
+    restart: on-failure
