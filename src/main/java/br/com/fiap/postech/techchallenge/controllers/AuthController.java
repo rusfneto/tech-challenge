@@ -5,6 +5,8 @@ import br.com.fiap.postech.techchallenge.services.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
@@ -15,10 +17,10 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/validar")
-    public ResponseEntity<Void> validar(@RequestBody AuthValidarRequestDTO request) {
-        boolean ok = authService.validarLogin(request.login(), request.senha());
-        return ok ? ResponseEntity.ok().build()
-                : ResponseEntity.status(401).build();
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, String>> login(@RequestBody AuthValidarRequestDTO request) {
+        authService.validarLogin(request.login(), request.senha());
+        return ResponseEntity.ok(Map.of("message", "Login realizado com sucesso"));
     }
+
 }
