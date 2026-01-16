@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +17,7 @@ public class Usuario {
     private String email;
     private String login;
     private String senha;
-    private LocalDate dataUltimaAlteracao;
+    private LocalDateTime dataUltimaAlteracao;
     private String endereco;
     private TipoUsuario tipoUsuario;
 
@@ -28,6 +28,6 @@ public class Usuario {
         this.senha = usuarioDTO.senha();
         this.endereco = usuarioDTO.endereco();
         this.tipoUsuario = tipoUsuario;
-        this.dataUltimaAlteracao = LocalDate.now();
+        this.dataUltimaAlteracao = LocalDateTime.now();
     }
 }

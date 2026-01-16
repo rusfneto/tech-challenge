@@ -44,7 +44,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                     u.setLogin(rs.getString("login"));
                     u.setSenha(rs.getString("senha"));
                     u.setDataUltimaAlteracao(
-                            rs.getObject("data_ultima_alteracao", java.time.LocalDate.class)
+                            rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class)
                     );
                     u.setEndereco(rs.getString("endereco"));
 
@@ -91,7 +91,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                     u.setLogin(rs.getString("login"));
                     u.setSenha(rs.getString("senha"));
                     u.setDataUltimaAlteracao(
-                            rs.getObject("data_ultima_alteracao", java.time.LocalDate.class)
+                            rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class)
                     );
                     u.setEndereco(rs.getString("endereco"));
 
@@ -135,7 +135,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                     u.setLogin(rs.getString("login"));
                     u.setSenha(rs.getString("senha"));
                     u.setDataUltimaAlteracao(
-                            rs.getObject("data_ultima_alteracao", java.time.LocalDate.class)
+                            rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class)
                     );
                     u.setEndereco(rs.getString("endereco"));
 
@@ -232,7 +232,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
             u.setEmail(rs.getString("email"));
             u.setLogin(rs.getString("login"));
             u.setSenha(rs.getString("senha"));
-            u.setDataUltimaAlteracao(rs.getObject("data_ultima_alteracao", java.time.LocalDate.class));
+            u.setDataUltimaAlteracao(rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class));
             u.setEndereco(rs.getString("endereco"));
 
             TipoUsuario tipo = new TipoUsuario();
@@ -245,4 +245,26 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
         
         return usuarioOptional;
     }
+
+    @Override
+    public int remove(Long id){
+        String sql = "DELETE FROM usuarios u WHERE u.id = :id";
+        
+        return jdbcClient.sql(sql)
+        .param("id", id)
+        .update();
+    }
+
+    @Override
+    public boolean existeLoginESenha(String login, String senha) {
+        Integer count = jdbcClient
+                .sql("SELECT COUNT(1) FROM usuarios WHERE login = :login AND senha = :senha")
+                .param("login", login)
+                .param("senha", senha)
+                .query(Integer.class)
+                .single();
+
+        return count != null && count > 0;
+    }
+
 }

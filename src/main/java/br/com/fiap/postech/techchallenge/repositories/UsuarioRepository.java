@@ -22,4 +22,10 @@ public interface UsuarioRepository {
     Optional<Usuario> atualizarUsuario(Long id, Usuario usuario);
 
     Optional<Usuario> findById(Long id);
+
+    int remove(Long id);
+    
+    boolean existeLoginESenha(String login, String senha);
+
+
 }

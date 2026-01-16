@@ -48,7 +48,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(150) NOT NULL,
   `login` varchar(100) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `data_ultima_alteracao` date NOT NULL,
+  `data_ultima_alteracao` datetime NOT NULL,
   `endereco` varchar(255) DEFAULT NULL,
   `tipo_usuario` varchar(50) NOT NULL,
   `tipo_usuario_id` bigint(20) DEFAULT NULL
