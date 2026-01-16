@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface UsuarioRepository {
 
     // lista paginada, sem filtro de tipo
-    List<Usuario> listarUsuarios(int tamanho, int offset);
+    List<Usuario> listarTodos();
 
     // lista por nome (like)
     List<Usuario> buscaUsuario(String nome);
@@ -27,5 +27,6 @@ public interface UsuarioRepository {
     
     boolean existeLoginESenha(String login, String senha);
 
+    int atualizarSenha(Long id, String novaSenha);
 
 }

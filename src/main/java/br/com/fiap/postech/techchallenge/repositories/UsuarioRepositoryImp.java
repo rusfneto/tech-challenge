@@ -17,7 +17,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     }
 
     @Override
-    public List<Usuario> listarUsuarios(int tamanho, int offset) {
+    public List<Usuario> listarTodos() {
         String sql = """
             SELECT u.id,
                    u.nome,
@@ -30,12 +30,10 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                    tu.tipo_usuario AS tipo_descricao
             FROM usuarios u
             LEFT JOIN tipo_usuario tu ON u.tipo_usuario_id = tu.id
-            LIMIT :tamanho OFFSET :offset
+            ORDER BY u.id
             """;
 
         return jdbcClient.sql(sql)
-                .param("tamanho", tamanho)
-                .param("offset", offset)
                 .query((rs, rowNum) -> {
                     Usuario u = new Usuario();
                     u.setId(rs.getLong("id"));
@@ -43,9 +41,7 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                     u.setEmail(rs.getString("email"));
                     u.setLogin(rs.getString("login"));
                     u.setSenha(rs.getString("senha"));
-                    u.setDataUltimaAlteracao(
-                            rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class)
-                    );
+                    u.setDataUltimaAlteracao(rs.getObject("data_ultima_alteracao", java.time.LocalDateTime.class));
                     u.setEndereco(rs.getString("endereco"));
 
                     Long tipoId = rs.getLong("tipo_id");
@@ -55,7 +51,6 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                         tipo.setTipoUsuario(rs.getString("tipo_descricao"));
                         u.setTipoUsuario(tipo);
                     }
-
                     return u;
                 })
                 .list();
@@ -176,29 +171,31 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override
     public Optional<Usuario> atualizarUsuario(Long id, Usuario usuario) {
-        
+
         String sql = """
                 UPDATE usuarios
                 SET nome = :nome,
                     email = :email,
                     login = :login,
-                    senha = :senha,
                     data_ultima_alteracao = :dataUltimaAlteracao,
                     endereco = :endereco,
                     tipo_usuario_id= :tipoUsuarioId
                 WHERE id = :id
                 """;
-        
-        jdbcClient.sql(sql)
-            .param("id", id)
-            .param("nome", usuario.getNome())
-            .param("email", usuario.getEmail())
-            .param("login", usuario.getLogin())
-            .param("senha", usuario.getSenha())
-            .param("dataUltimaAlteracao", usuario.getDataUltimaAlteracao())
-            .param("endereco", usuario.getEndereco())
-            .param("tipoUsuarioId", usuario.getTipoUsuario().getId())
-            .update();
+
+        int rows = jdbcClient.sql(sql)
+                .param("id", id)
+                .param("nome", usuario.getNome())
+                .param("email", usuario.getEmail())
+                .param("login", usuario.getLogin())
+                .param("dataUltimaAlteracao", usuario.getDataUltimaAlteracao())
+                .param("endereco", usuario.getEndereco())
+                .param("tipoUsuarioId", usuario.getTipoUsuario().getId())
+                .update();
+
+        if (rows == 0) {
+            return Optional.empty(); // id não existe
+        }
 
         Optional<Usuario> usuarioAtualizado = findById(id);
 
@@ -266,5 +263,22 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
         return count != null && count > 0;
     }
+
+    @Override
+    public int atualizarSenha(Long id, String novaSenha) {
+        String sql = """
+        UPDATE usuarios
+        SET senha = :senha,
+            data_ultima_alteracao = :dataUltimaAlteracao
+        WHERE id = :id
+        """;
+
+        return jdbcClient.sql(sql)
+                .param("id", id)
+                .param("senha", novaSenha)
+                .param("dataUltimaAlteracao", java.time.LocalDateTime.now())
+                .update();
+    }
+
 
 }

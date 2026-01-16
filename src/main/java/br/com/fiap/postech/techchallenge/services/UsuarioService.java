@@ -1,5 +1,6 @@
 package br.com.fiap.postech.techchallenge.services;
 
+
 import br.com.fiap.postech.techchallenge.dtos.UsuarioAtualizarSenhaRequestDTO;
 import br.com.fiap.postech.techchallenge.dtos.UsuarioPatchDTO;
 import br.com.fiap.postech.techchallenge.dtos.UsuarioRequestDTO;
@@ -10,6 +11,8 @@ import br.com.fiap.postech.techchallenge.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import br.com.fiap.postech.techchallenge.exceptions.ResourceNotFoundException;
+import org.springframework.util.StringUtils;
 
 
 import java.time.LocalDateTime;
@@ -25,26 +28,38 @@ public class UsuarioService {
     @Autowired
     private TipoUsuarioRepository tipoUsuarioRepository;
 
-    public List<Usuario> listarUsuarios(int pagina, int tamanho, Long tipo) {
-        int offset = (pagina - 1) * tamanho;
-
-        if (tipo == null) {
-            return usuarioRepository.listarUsuarios(tamanho, offset);
-        } else {
-            return usuarioRepository.listarUsuariosPorTipo(tamanho, offset, tipo);
-        }
+    public List<Usuario> listarTodos() {
+        return usuarioRepository.listarTodos();
     }
 
-    public List<Usuario> buscaUsuario(String nome){
+    public List<Usuario> buscaUsuario(String nome) {
         return usuarioRepository.buscaUsuario(nome);
     }
 
 
-    public void salvarUsuario(UsuarioRequestDTO usuario) {
-        var usuarioEntity = converteDTO(usuario);
-        var save = usuarioRepository.save(usuarioEntity);
-        Assert.state(save == 1, "Erro ao salvar usuario");
+
+
+    public String salvarUsuario(UsuarioRequestDTO usuarioDto) {
+
+        if (usuarioDto.tipoUsuario() == null) {
+            throw new IllegalArgumentException("O campo tipoUsuario é obrigatório.");
+        }
+
+        tipoUsuarioRepository.findById(usuarioDto.tipoUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Tipo de usuario nao encontrado: id=" + usuarioDto.tipoUsuario()
+                ));
+
+        var usuarioEntity = converteDTO(usuarioDto);
+        int rows = usuarioRepository.save(usuarioEntity);
+
+        if (rows != 1) {
+            throw new IllegalStateException("Erro ao salvar usuario");
+        }
+
+        return "Usuario cadastrado com sucesso";
     }
+
 
     private Usuario converteDTO(UsuarioRequestDTO usuarioRequestDTO){
         var tipoUsuario = tipoUsuarioRepository.findById(usuarioRequestDTO.tipoUsuario())
@@ -55,52 +70,60 @@ public class UsuarioService {
 
 
     public Usuario atualizarUsuario(Long id, UsuarioPatchDTO usuarioPatchDto) {
-        
-        TipoUsuario tipoUsuarioPatch = null;
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));        
-        
-        if (usuarioPatchDto.getTipoUsuarioId() != null){
-            tipoUsuarioPatch = tipoUsuarioRepository.findById(usuarioPatchDto.getTipoUsuarioId()).orElseThrow(() -> new RuntimeException("Tipo de usuário não encontrado"));
+
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario nao encontrado: id=" + id));
+
+        if (usuarioPatchDto.getTipoUsuarioId() != null) {
+            TipoUsuario tipoUsuarioPatch = tipoUsuarioRepository.findById(usuarioPatchDto.getTipoUsuarioId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Tipo de usuario nao encontrado: id=" + usuarioPatchDto.getTipoUsuarioId()));
+            usuario.setTipoUsuario(tipoUsuarioPatch);
         }
-        
 
-        if(usuarioPatchDto.getNome() != null) usuario.setNome(usuarioPatchDto.getNome());
-        if(usuarioPatchDto.getEmail() != null) usuario.setEmail(usuarioPatchDto.getEmail());
-
-        if(usuarioPatchDto.getLogin() != null) usuario.setLogin(usuarioPatchDto.getLogin());
-        // if(usuarioPatchDto.getSenha() != null) usuario.setSenha(usuarioPatchDto.getSenha());
-        if(usuarioPatchDto.getEndereco() != null) usuario.setEndereco(usuarioPatchDto.getEndereco());
-        
-        if(tipoUsuarioPatch != null) usuario.setTipoUsuario(tipoUsuarioPatch);
+        if (usuarioPatchDto.getNome() != null) usuario.setNome(usuarioPatchDto.getNome());
+        if (usuarioPatchDto.getEmail() != null) usuario.setEmail(usuarioPatchDto.getEmail());
+        if (usuarioPatchDto.getLogin() != null) usuario.setLogin(usuarioPatchDto.getLogin());
+        if (usuarioPatchDto.getEndereco() != null) usuario.setEndereco(usuarioPatchDto.getEndereco());
 
         usuario.setDataUltimaAlteracao(LocalDateTime.now());
 
-        Optional<Usuario> usuarioAtualizadoOptional = usuarioRepository.atualizarUsuario(id, usuario);
+        return usuarioRepository.atualizarUsuario(id, usuario)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario nao encontrado: id=" + id));
+    }
 
-        Usuario usuarioAtualizado = usuarioAtualizadoOptional.orElseThrow(() -> new RuntimeException("Erro ao recuperar o usuário após atualização"));
+    public String excluirUsuario(Long id) {
 
-        //alterar
-        return usuarioAtualizado;
-        
+        int rows = usuarioRepository.remove(id);
+
+        if (rows == 0) {
+            throw new ResourceNotFoundException("Usuario nao encontrado: id=" + id);
+        }
+
+        return "Usuario excluido com sucesso";
     }
 
 
-    public boolean excluirUsuario(Long id) {
-        
-        int qtdRegistrosExcluidos = usuarioRepository.remove(id);
+    public void atualizarSenha(Long id, UsuarioAtualizarSenhaRequestDTO dto) {
 
-        return qtdRegistrosExcluidos > 0;
+        if (dto == null || !StringUtils.hasText(dto.getSenha())) {
+            throw new IllegalArgumentException("A nova senha é obrigatoria");
+        }
+
+        String novaSenha = dto.getSenha().trim();
+
+        if (novaSenha.length() < 6) {
+            throw new IllegalArgumentException("A nova senha deve ter pelo menos 6 caracteres");
+        }
+
+        usuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario nao encontrado: id=" + id));
+
+        int rows = usuarioRepository.atualizarSenha(id, novaSenha);
+
+        if (rows == 0) {
+            throw new ResourceNotFoundException("Usuario nao encontrado: id=" + id);
+        }
     }
 
 
-    public void atualizarSenha(Long id, UsuarioAtualizarSenhaRequestDTO reqBody) {
-        
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-        usuario.setSenha(reqBody.getSenha());
-
-        usuarioRepository.atualizarUsuario(id, usuario);
-
-        return;        
-    }
 }

@@ -1,5 +1,6 @@
 package br.com.fiap.postech.techchallenge.services;
 
+import br.com.fiap.postech.techchallenge.exceptions.UnauthorizedException;
 import br.com.fiap.postech.techchallenge.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -13,10 +14,16 @@ public class AuthService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public boolean validarLogin(String login, String senha) {
+    public void validarLogin(String login, String senha) {
         if (!StringUtils.hasText(login) || !StringUtils.hasText(senha)) {
-            return false;
+            // 400 faz mais sentido que 401 quando faltam dados
+            throw new IllegalArgumentException("Login e senha sao obrigatorios");
         }
-        return usuarioRepository.existeLoginESenha(login, senha);
+
+        boolean ok = usuarioRepository.existeLoginESenha(login.trim(), senha);
+
+        if (!ok) {
+            throw new UnauthorizedException("Login ou senha invalidos");
+        }
     }
 }
