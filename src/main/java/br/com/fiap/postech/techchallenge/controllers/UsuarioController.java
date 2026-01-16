@@ -10,34 +10,37 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/v1/users")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listarUsuarios(
-            @RequestParam("pagina") int pagina,
-            @RequestParam("tamanho") int tamanho,
-            @RequestParam(name = "tipo", required = false) Long tipo) {
-        var usuarios = usuarioService.listarUsuarios(pagina, tamanho, tipo);
+    public ResponseEntity<List<Usuario>> listarOuBuscar(
+            @RequestParam(name = "nome", required = false) String nome
+    )  {
+        if (nome != null) {
+            String n = nome.trim();
+            if (n.isEmpty()) {
+                throw new IllegalArgumentException("O parametro 'nome' nao pode ser vazio.");
+            }
+            if (n.length() < 3) {
+                throw new IllegalArgumentException("O parametro 'nome' deve ter pelo menos 3 caracteres.");
+            }
+            return ResponseEntity.ok(usuarioService.buscaUsuario(n));
+        }
 
-        return ResponseEntity.ok(usuarios);
-    }
-
-    @GetMapping("/busca")
-    public ResponseEntity<List<Usuario>> buscar(@RequestParam("nome") String nome) {
-        var usuarios = usuarioService.buscaUsuario(nome);
-        return ResponseEntity.ok(usuarios);
+        return ResponseEntity.ok(usuarioService.listarTodos());
     }
 
     @PostMapping
-    public ResponseEntity<Void> salvarUsuario(@RequestBody UsuarioRequestDTO usuario) {
+    public ResponseEntity<Map<String, String>> salvarUsuario(@RequestBody UsuarioRequestDTO usuario) {
         usuarioService.salvarUsuario(usuario);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(201).body(Map.of("message", "Usuario cadastrado com sucesso"));
     }
 
     @PatchMapping("/{id}")
@@ -49,19 +52,19 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirUsuario(@PathVariable Long id){
-
-        return usuarioService.excluirUsuario(id)
-                ? ResponseEntity.status(204).build()
-                : ResponseEntity.status(404).build();        
+    public ResponseEntity<Map<String, String>> excluir(@PathVariable Long id) {
+        String msg = usuarioService.excluirUsuario(id);
+        return ResponseEntity.ok(Map.of("message", msg));
     }
 
-    @PutMapping("/{id}/trocar-senha")
-    public ResponseEntity<Void> atualizarSenha(@PathVariable Long id, @RequestBody UsuarioAtualizarSenhaRequestDTO reqBody){
 
+    @PutMapping("/{id}/password")
+    public ResponseEntity<Map<String, String>> atualizarSenha(
+            @PathVariable Long id,
+            @RequestBody UsuarioAtualizarSenhaRequestDTO reqBody
+    ) {
         usuarioService.atualizarSenha(id, reqBody);
-        return ResponseEntity.status(200).build();
-                
+        return ResponseEntity.ok(Map.of("message", "Senha atualizada com sucesso"));
     }
 
 }

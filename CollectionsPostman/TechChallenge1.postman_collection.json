@@ -1,0 +1,1471 @@
+{
+	"info": {
+		"_postman_id": "ef6be39d-fcd6-4b8d-84e7-1bb575954f03",
+		"name": "TechChallenge1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29047183"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "users",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "password",
+											"item": [
+												{
+													"name": "atualizar Senha",
+													"request": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"senha\": \"senhaNova123\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id/password",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id",
+																"password"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": "999"
+																}
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "OK",
+															"originalRequest": {
+																"method": "PUT",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"senha\": \"senhaNova123\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/users/:id/password",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"users",
+																		":id",
+																		"password"
+																	],
+																	"variable": [
+																		{
+																			"key": "id",
+																			"value": "1"
+																		}
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": null,
+															"header": [
+																{
+																	"key": "X-Content-Type-Options",
+																	"value": "nosniff"
+																},
+																{
+																	"key": "X-XSS-Protection",
+																	"value": "0"
+																},
+																{
+																	"key": "Cache-Control",
+																	"value": "no-cache, no-store, max-age=0, must-revalidate"
+																},
+																{
+																	"key": "Pragma",
+																	"value": "no-cache"
+																},
+																{
+																	"key": "Expires",
+																	"value": "0"
+																},
+																{
+																	"key": "X-Frame-Options",
+																	"value": "DENY"
+																},
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																},
+																{
+																	"key": "Transfer-Encoding",
+																	"value": "chunked"
+																},
+																{
+																	"key": "Date",
+																	"value": "Fri, 16 Jan 2026 22:35:49 GMT"
+																},
+																{
+																	"key": "Keep-Alive",
+																	"value": "timeout=60"
+																},
+																{
+																	"key": "Connection",
+																	"value": "keep-alive"
+																}
+															],
+															"cookie": [],
+															"body": "{\n    \"message\": \"Senha atualizada com sucesso\"\n}"
+														},
+														{
+															"name": "Erro: Usuário não encontrado",
+															"originalRequest": {
+																"method": "PUT",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"senha\": \"senhaNova123\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/v1/users/:id/password",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"v1",
+																		"users",
+																		":id",
+																		"password"
+																	],
+																	"variable": [
+																		{
+																			"key": "id",
+																			"value": "999"
+																		}
+																	]
+																}
+															},
+															"status": "Not Found",
+															"code": 404,
+															"_postman_previewlanguage": null,
+															"header": [
+																{
+																	"key": "X-Content-Type-Options",
+																	"value": "nosniff"
+																},
+																{
+																	"key": "X-XSS-Protection",
+																	"value": "0"
+																},
+																{
+																	"key": "Cache-Control",
+																	"value": "no-cache, no-store, max-age=0, must-revalidate"
+																},
+																{
+																	"key": "Pragma",
+																	"value": "no-cache"
+																},
+																{
+																	"key": "Expires",
+																	"value": "0"
+																},
+																{
+																	"key": "X-Frame-Options",
+																	"value": "DENY"
+																},
+																{
+																	"key": "Content-Type",
+																	"value": "application/problem+json"
+																},
+																{
+																	"key": "Transfer-Encoding",
+																	"value": "chunked"
+																},
+																{
+																	"key": "Date",
+																	"value": "Fri, 16 Jan 2026 22:37:54 GMT"
+																},
+																{
+																	"key": "Keep-Alive",
+																	"value": "timeout=60"
+																},
+																{
+																	"key": "Connection",
+																	"value": "keep-alive"
+																}
+															],
+															"cookie": [],
+															"body": "{\n    \"type\": \"urn:techchallenge:problem:not-found\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"detail\": \"Usuario nao encontrado: id=999\",\n    \"instance\": \"/api/v1/users/999/password\",\n    \"timestamp\": \"2026-01-16T19:37:54.503246-03:00\"\n}"
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "listar Ou Buscar",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users?nome=",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users"
+													],
+													"query": [
+														{
+															"key": "nome",
+															"value": ""
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users?nome=maria",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users"
+															],
+															"query": [
+																{
+																	"key": "nome",
+																	"value": "maria"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 20:45:11 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "[\n    {\n        \"id\": 2,\n        \"nome\": \"Maria Oliveira\",\n        \"email\": \"maria.oliveira@example.com\",\n        \"login\": \"mariaoli\",\n        \"senha\": \"senha123\",\n        \"dataUltimaAlteracao\": \"2025-12-09T00:00:00\",\n        \"endereco\": \"Av. Brasil, 250\",\n        \"tipoUsuario\": {\n            \"id\": 2,\n            \"tipoUsuario\": \"CLIENTE\"\n        }\n    }\n]"
+												},
+												{
+													"name": "OK todos",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users"
+															],
+															"query": [
+																{
+																	"key": "nome",
+																	"value": "string",
+																	"disabled": true
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 20:11:44 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "[\n    {\n        \"id\": 1,\n        \"nome\": \"João da Silva\",\n        \"email\": \"joao.silva@example.com\",\n        \"login\": \"joaosilva\",\n        \"senha\": \"senha123\",\n        \"dataUltimaAlteracao\": \"2025-12-09T00:00:00\",\n        \"endereco\": \"Rua A, 100 - Centro\",\n        \"tipoUsuario\": {\n            \"id\": 1,\n            \"tipoUsuario\": \"DONO\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"nome\": \"Maria Oliveira\",\n        \"email\": \"maria.oliveira@example.com\",\n        \"login\": \"mariaoli\",\n        \"senha\": \"senha123\",\n        \"dataUltimaAlteracao\": \"2025-12-09T00:00:00\",\n        \"endereco\": \"Av. Brasil, 250\",\n        \"tipoUsuario\": {\n            \"id\": 2,\n            \"tipoUsuario\": \"CLIENTE\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"nome\": \"Pedro Souza\",\n        \"email\": \"pedro.souza@example.com\",\n        \"login\": \"pedrosz\",\n        \"senha\": \"senha123\",\n        \"dataUltimaAlteracao\": \"2025-12-09T00:00:00\",\n        \"endereco\": \"Rua Flores, 80\",\n        \"tipoUsuario\": {\n            \"id\": 2,\n            \"tipoUsuario\": \"CLIENTE\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"nome\": \"Ana Costa\",\n        \"email\": \"ana.costa@example.com\",\n        \"login\": \"anacosta\",\n        \"senha\": \"senha123\",\n        \"dataUltimaAlteracao\": \"2025-12-09T00:00:00\",\n        \"endereco\": \"Rua Azul, 45\",\n        \"tipoUsuario\": {\n            \"id\": 2,\n            \"tipoUsuario\": \"CLIENTE\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"nome\": \"Lucas Pereira\",\n        \"email\": \"lucas.pereira@example.com\",\n        \"login\": \"lucasp\",\n        \"senha\": \"senha123\",\n        \"dataUltimaAlteracao\": \"2025-12-09T00:00:00\",\n        \"endereco\": \"Travessa Verde, 12\",\n        \"tipoUsuario\": {\n            \"id\": 2,\n            \"tipoUsuario\": \"CLIENTE\"\n        }\n    }\n]"
+												},
+												{
+													"name": "Erro: Param Vazio ou Nulo",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users?nome=",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users"
+															],
+															"query": [
+																{
+																	"key": "nome",
+																	"value": ""
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/problem+json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 20:50:57 GMT"
+														},
+														{
+															"key": "Connection",
+															"value": "close"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"type\": \"urn:techchallenge:problem:invalid-parameter\",\n    \"title\": \"Invalid parameter\",\n    \"status\": 400,\n    \"detail\": \"O parametro 'nome' nao pode ser vazio.\",\n    \"instance\": \"/api/v1/users\",\n    \"timestamp\": \"2026-01-16T17:50:56.9790282-03:00\"\n}"
+												}
+											]
+										},
+										{
+											"name": "atualizar Usuario",
+											"request": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"nome\": \"João da Silva Souza\",\n  \"tipoUsuarioId\": 999\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "1"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"nome\": \"João da Silva Souza\",\n  \"tipoUsuarioId\": 1\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": "1"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 20:52:23 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"id\": 1,\n    \"nome\": \"João da Silva Souza\",\n    \"email\": \"joao.silva@example.com\",\n    \"login\": \"joaosilva\",\n    \"senha\": \"senha123\",\n    \"dataUltimaAlteracao\": \"2026-01-16T17:52:23\",\n    \"endereco\": \"Rua A, 100 - Centro\",\n    \"tipoUsuario\": {\n        \"id\": 1,\n        \"tipoUsuario\": \"DONO\"\n    }\n}"
+												},
+												{
+													"name": "Erro: Usuario não encontrado",
+													"originalRequest": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"nome\": \"Teste\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": "999"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/problem+json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 21:11:49 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"type\": \"urn:techchallenge:problem:not-found\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"detail\": \"Usuario nao encontrado: id=999\",\n    \"instance\": \"/api/v1/users/999\",\n    \"timestamp\": \"2026-01-16T18:11:49.5910102-03:00\"\n}"
+												},
+												{
+													"name": "Erro: Tipo de Usuario não encontrado",
+													"originalRequest": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"nome\": \"João da Silva Souza\",\n  \"tipoUsuarioId\": 999\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": "1"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/problem+json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 21:12:55 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"type\": \"urn:techchallenge:problem:not-found\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"detail\": \"Tipo de usuario nao encontrado: id=999\",\n    \"instance\": \"/api/v1/users/1\",\n    \"timestamp\": \"2026-01-16T18:12:55.6221085-03:00\"\n}"
+												}
+											]
+										},
+										{
+											"name": "salvar Usuario",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"nome\": \"Teste da Silva\",\n  \"email\": \"teste@email.com.br\",\n  \"login\": \"testesilva\",\n  \"senha\": \"senha123\",\n  \"endereco\": \"rua 1 numero 200\",\n  \"tipoUsuario\": 2\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"nome\": \"Teste da Silva\",\n  \"email\": \"teste@email.com.br\",\n  \"login\": \"testesilva\",\n  \"senha\": \"senha123\",\n  \"endereco\": \"rua 1 numero 200\",\n  \"tipoUsuario\": 2\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users"
+															]
+														}
+													},
+													"status": "Created",
+													"code": 201,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 21:40:00 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"message\": \"Usuario cadastrado com sucesso\"\n}"
+												},
+												{
+													"name": "Erro: Tipo Usuario Não encontrado",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"nome\": \"Teste da Silva\",\n  \"email\": \"teste@email.com.br\",\n  \"login\": \"testesilva\",\n  \"senha\": \"senha123\",\n  \"endereco\": \"rua 1 numero 200\",\n  \"tipoUsuario\": 3\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users"
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "",
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/problem+json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 21:37:52 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [
+														{
+															"expires": "Invalid Date",
+															"domain": "",
+															"path": ""
+														}
+													],
+													"body": "{\n    \"type\": \"urn:techchallenge:problem:not-found\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"detail\": \"Tipo de usuario não encontrado: id=3\",\n    \"instance\": \"/api/v1/users\",\n    \"timestamp\": \"2026-01-16T18:37:52.6323533-03:00\"\n}"
+												}
+											]
+										},
+										{
+											"name": "excluir Usuario",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "999"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": "1"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 21:43:15 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"message\": \"Usuario excluido com sucesso\"\n}"
+												},
+												{
+													"name": "Erro: Usuario não encontrado",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "id",
+																	"value": "999"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/problem+json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 21:43:59 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"type\": \"urn:techchallenge:problem:not-found\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"detail\": \"Usuario nao encontrado: id=999\",\n    \"instance\": \"/api/v1/users/999\",\n    \"timestamp\": \"2026-01-16T18:43:59.4007222-03:00\"\n}"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "auth",
+							"item": [
+								{
+									"name": "login",
+									"item": [
+										{
+											"name": "validar",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"login\": \"mariaoli\",\n  \"senha\": \"senhaErrada\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/auth/login",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"auth",
+														"login"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"login\": \"mariaoli\",\n  \"senha\": \"senha123\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/auth/login",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"auth",
+																"login"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 21:50:12 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"message\": \"Login realizado com sucesso\"\n}"
+												},
+												{
+													"name": "Erro: Senha Invalida",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"login\": \"mariaoli\",\n  \"senha\": \"senhaErrada\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/auth/login",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"auth",
+																"login"
+															]
+														}
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": null,
+													"header": [
+														{
+															"key": "X-Content-Type-Options",
+															"value": "nosniff"
+														},
+														{
+															"key": "X-XSS-Protection",
+															"value": "0"
+														},
+														{
+															"key": "Cache-Control",
+															"value": "no-cache, no-store, max-age=0, must-revalidate"
+														},
+														{
+															"key": "Pragma",
+															"value": "no-cache"
+														},
+														{
+															"key": "Expires",
+															"value": "0"
+														},
+														{
+															"key": "X-Frame-Options",
+															"value": "DENY"
+														},
+														{
+															"key": "Content-Type",
+															"value": "application/problem+json"
+														},
+														{
+															"key": "Transfer-Encoding",
+															"value": "chunked"
+														},
+														{
+															"key": "Date",
+															"value": "Fri, 16 Jan 2026 21:52:58 GMT"
+														},
+														{
+															"key": "Keep-Alive",
+															"value": "timeout=60"
+														},
+														{
+															"key": "Connection",
+															"value": "keep-alive"
+														}
+													],
+													"cookie": [],
+													"body": "{\n    \"type\": \"urn:techchallenge:problem:unauthorized\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"detail\": \"Login ou senha invalidos\",\n    \"instance\": \"/api/v1/auth/login\",\n    \"timestamp\": \"2026-01-16T18:52:58.6120562-03:00\"\n}"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
