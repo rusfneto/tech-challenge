@@ -31,9 +31,8 @@ CREATE TABLE `tipo_usuario` (
 -- Despejando dados para a tabela `tipo_usuario`
 --
 
-INSERT INTO `tipo_usuario` (`id`, `tipo_usuario`) VALUES(1, 'ADMIN');
+INSERT INTO `tipo_usuario` (`id`, `tipo_usuario`) VALUES(1, 'DONO');
 INSERT INTO `tipo_usuario` (`id`, `tipo_usuario`) VALUES(2, 'CLIENTE');
-INSERT INTO `tipo_usuario` (`id`, `tipo_usuario`) VALUES(3, 'DONO');
 
 -- --------------------------------------------------------
 
@@ -59,7 +58,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `login`, `senha`, `data_ultima_alteracao`, `endereco`, `tipo_usuario`, `tipo_usuario_id`) VALUES(1, 'João da Silva', 'joao.silva@example.com', 'joaosilva', 'senha123', '2025-12-09', 'Rua A, 100 - Centro', 'ADMIN', 1);
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `login`, `senha`, `data_ultima_alteracao`, `endereco`, `tipo_usuario`, `tipo_usuario_id`) VALUES(2, 'Maria Oliveira', 'maria.oliveira@example.com', 'mariaoli', 'senha123', '2025-12-09', 'Av. Brasil, 250', 'DONO', 3);
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `login`, `senha`, `data_ultima_alteracao`, `endereco`, `tipo_usuario`, `tipo_usuario_id`) VALUES(2, 'Maria Oliveira', 'maria.oliveira@example.com', 'mariaoli', 'senha123', '2025-12-09', 'Av. Brasil, 250', 'DONO', 2);
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `login`, `senha`, `data_ultima_alteracao`, `endereco`, `tipo_usuario`, `tipo_usuario_id`) VALUES(3, 'Pedro Souza', 'pedro.souza@example.com', 'pedrosz', 'senha123', '2025-12-09', 'Rua Flores, 80', 'CLIENTE', 2);
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `login`, `senha`, `data_ultima_alteracao`, `endereco`, `tipo_usuario`, `tipo_usuario_id`) VALUES(4, 'Ana Costa', 'ana.costa@example.com', 'anacosta', 'senha123', '2025-12-09', 'Rua Azul, 45', 'CLIENTE', 2);
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `login`, `senha`, `data_ultima_alteracao`, `endereco`, `tipo_usuario`, `tipo_usuario_id`) VALUES(5, 'Lucas Pereira', 'lucas.pereira@example.com', 'lucasp', 'senha123', '2025-12-09', 'Travessa Verde, 12', 'CLIENTE', 2);
