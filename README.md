@@ -3,7 +3,7 @@
 API em Java (Maven) com suporte a Docker/Docker Compose e collection do Postman para testes.
 
 ## Requisitos
-- **Docker + Docker Compose**  
+- **Docker**  
 
 ## Rodando com Docker
 ```bash
