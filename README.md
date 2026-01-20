@@ -1,4 +1,4 @@
-# Tech Challenge
+# Tech Challenge Fase 1
 
 API em Java (Maven) com suporte a Docker/Docker Compose e collection do Postman para testes.
 
