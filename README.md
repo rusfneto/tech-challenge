@@ -3,8 +3,7 @@
 API em Java (Maven) com suporte a Docker/Docker Compose e collection do Postman para testes.
 
 ## Requisitos
-- **Com Docker:** Docker + Docker Compose  
-- **Sem Docker:** JDK + Maven (ou Maven Wrapper)
+- **Docker + Docker Compose**  
 
 ## Rodando com Docker
 ```bash
